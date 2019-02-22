@@ -1,0 +1,22 @@
+<html>
+    <meta charset="utf-8">
+    <head>
+        <link rel="stylesheet" type="text/css" href="index.css" />
+    </head>
+    <script type="text/javascript" src="ace.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+    <body>
+        <div id="output">
+            <iframe id="ogs" src="ogs-debug.html">
+                <p>ERROR Your browser does not support iframes</p>
+            </iframe>
+        </div>
+        <div id="input">
+            <button onclick="run()">RUN</button>
+            <button onclick="runFullPage()">RUN in full page</button>
+            <pre id="editor"></pre>
+            <button onclick="setCodeRedBG()">Set code to `red`</button>
+            <button onclick="setCodeBlueBG()">Set code to `blue`</button>
+        </div>
+    </body>
+</html>
