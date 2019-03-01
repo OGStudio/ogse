@@ -1,0 +1,4 @@
+DIR_STAGE=$1
+// FEATURE generate.ogs-04/Impl
+// FEATURE generate.ogs/Impl
+// FEATURE generate.ace/Impl

@@ -1,0 +1,9 @@
+FEATURE index.html/Script
+const query = window.location.search.substring(1);
+const pairs = query.split("&");
+var arguments = {};
+for (var i = 0; i < pairs.length; ++i)
+{
+    var pair = pairs[i].split("=");
+    arguments[pair[0]] = pair[1];
+}

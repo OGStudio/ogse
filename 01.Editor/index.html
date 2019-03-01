@@ -1,0 +1,123 @@
+<html>
+    <meta charset="utf-8">
+    <head>
+        <style>
+
+            #editor
+            {
+                margin-top: 0;
+                margin-bottom: 0;
+                width: 100%;
+                height: 95%;
+            }
+            
+            #render
+            {
+                border: 0;
+                width: 100%;
+                height: 100%;
+            }
+            div
+            {
+            /*
+                border-style: dashed;
+                border-color: grey;
+            */
+            }
+            
+            #container
+            {
+                text-align: center;
+            }
+            
+            #center
+            {
+                width: 1360px;
+                display: inline-block;
+            }
+            
+            #left
+            {
+                float: left;
+                width: 540px;
+            }
+            
+            #right
+            {
+                float: right;
+                width: 800px;
+            }
+            
+            #run
+            {
+                padding-top: 10px;
+                padding-bottom: 10px;
+                margin-bottom: 10px;
+                border-color: grey;
+                border-style: solid;
+                border-width: 1px;
+            }
+            
+        </style>
+    </head>
+
+    <script type="text/javascript" src="ace.js"></script>
+    
+    <body>
+
+        <!--
+        Topic: How do you easily horizontally center a <div> using CSS?
+        Source: https://stackoverflow.com/a/10797328
+        -->
+        <div id="container">
+            <div id="center">
+                <div id="left">
+        
+                    <center>
+                        <div id="run">
+                            <button onclick="run()">Run</button>
+                        </div>
+                    </center>
+                    
+                    <pre id="editor"></pre>
+                    
+                </div>
+                <div id="right">
+        
+                    <iframe id="render" src="render.html">
+                        <p>ERROR Your browser does not support iframes</p>
+                    </iframe>
+                    
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+
+            const query = window.location.search.substring(1);
+            const pairs = query.split("&");
+            var arguments = {};
+            for (var i = 0; i < pairs.length; ++i)
+            {
+                var pair = pairs[i].split("=");
+                arguments[pair[0]] = pair[1];
+            }
+            // Initialize ACE editor and set its language to Lua.
+            var editor = ace.edit("editor");
+            editor.session.setMode("ace/mode/lua");
+            function run()
+            {
+                var iframe = document.getElementById("render");
+                const script = btoa(editor.session.getValue());
+                iframe.src = "render.html?base64script=" + script;
+            }
+            
+            // Run provided code at the start.
+            if ("base64code" in arguments)
+            {
+                const code = atob(arguments["base64code"]);
+                editor.session.setValue(code);
+                run();
+            }
+        </script>
+    </body>
+</html>

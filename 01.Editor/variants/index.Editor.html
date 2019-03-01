@@ -1,0 +1,19 @@
+FEATURE index.html/Body
+<pre id="editor"></pre>
+
+FEATURE index.html/ACE
+<script type="text/javascript" src="ace.js"></script>
+
+FEATURE index.html/Style
+#editor
+{
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+    height: 95%;
+}
+
+FEATURE index.html/Script
+// Initialize ACE editor and set its language to Lua.
+var editor = ace.edit("editor");
+editor.session.setMode("ace/mode/lua");

@@ -1,0 +1,26 @@
+FEATURE index.html/Body
+<center>
+    <div id="run">
+        <button onclick="run()">Run</button>
+    </div>
+</center>
+
+FEATURE index.html/Style
+#run
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-color: grey;
+    border-style: solid;
+    border-width: 1px;
+}
+
+FEATURE index.html/Script
+function run()
+{
+    var iframe = document.getElementById("render");
+    const script = btoa(editor.session.getValue());
+    iframe.src = "render.html?base64script=" + script;
+}
+
