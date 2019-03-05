@@ -1,0 +1,6 @@
+DIR_STAGE=$1
+OGS="ogs-05"
+cp $DIR_STAGE/raw/$OGS.js $DIR_STAGE
+cp $DIR_STAGE/raw/$OGS.html.mem $DIR_STAGE
+cp $DIR_STAGE/raw/ace.js $DIR_STAGE
+cp $DIR_STAGE/raw/*lua.js $DIR_STAGE

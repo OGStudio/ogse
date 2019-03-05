@@ -1,0 +1,9 @@
+FEATURE index.html/ScriptBegin
+function run()
+{
+    var iframe = document.getElementById("render");
+    const script = btoa(editor.session.getValue());
+    iframe.src = "render.html?base64script=" + script;
+
+FEATURE index.html/ScriptEnd
+}

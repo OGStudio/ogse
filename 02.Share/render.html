@@ -1,0 +1,109 @@
+<html>
+    <meta charset="utf-8">
+    <head>
+        <style>
+
+            body
+            {
+                margin: 0px;
+            }
+            
+            #canvas
+            {
+                background-color: black;
+                width: 800px;
+                height: 600px;
+                /* 
+                Emscripten canvas MUST NOT have any border or padding
+                to have correct mouse coordinates
+                */
+                border: 0px none;
+            }
+            
+            #output
+            {
+                width: 800px;
+                /* 5px more because 600px is not enough somehow */
+                height: calc(100% - 600px - 5px);
+            }
+            
+        </style>
+    </head>
+    <body>
+        <center>
+        <div>
+            <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+        </div>
+        <div>
+            <textarea id="output" rows="8"></textarea>
+        </div>
+        
+        </center>
+        <script type="text/javascript">
+
+            var Module = {
+                preRun: [],
+                postRun: [],
+                print: (function() {
+                    var element = document.getElementById('output');
+                    // Clear browser cache.
+                    if (element)
+                    {
+                        element.value = '';
+                    }
+                    return function(text) {
+                        if (element) {
+                            element.value += text + "\n";
+                            // Scroll to the bottom.
+                            element.scrollTop = element.scrollHeight;
+                        }
+                    };
+                })(),
+                printErr: function(text) {
+                    console.error(text);
+                },
+                canvas: (function() {
+                    var canvas = document.getElementById('canvas');
+            
+                    // As a default initial behavior, pop up an alert when webgl context is lost. To make your
+                    // application robust, you may want to override this behavior before shipping!
+                    // See http://www.khronos.org/registry/webgl/specs/latest/1.0/#5.15.2
+                    canvas.addEventListener(
+                        "webglcontextlost",
+                        function(e) {
+                            alert('WebGL context has been lost. Please, reload the page.');
+                            e.preventDefault();
+                        },
+                        false
+                    );
+                    return canvas;
+                })(),
+                setStatus: function(text) {
+                    Module.print("STATUS: '" + text + "'");
+                },
+                totalDependencies: 0,
+                monitorRunDependencies: function(left) {
+                    this.totalDependencies = Math.max(this.totalDependencies, left);
+                    Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
+                }
+            };
+            
+            var name = "ogs-05";
+            Module.setStatus('Downloading...');
+            window.onerror = function(event) {
+                Module.setStatus('Exception thrown, see JavaScript console');
+            };
+            
+            var memoryInitializer = name + ".html.mem";
+            Module['memoryInitializerRequestURL'] = memoryInitializer;
+            var meminitXHR = Module['memoryInitializerRequest'] = new XMLHttpRequest();
+            meminitXHR.open('GET', memoryInitializer, true);
+            meminitXHR.responseType = 'arraybuffer';
+            meminitXHR.send(null);
+            
+            var script = document.createElement('script');
+            script.src = name + ".js";
+            document.body.appendChild(script);
+        </script>
+    </body>
+</html>

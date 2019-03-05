@@ -13,6 +13,7 @@ DIR=`dirname $0`
 # Stages may be treated as versions.
 STAGES="
 01.Editor
+02.Share
 "
 
 # Directories with variants.
