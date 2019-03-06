@@ -1,0 +1,8 @@
+FEATURE index.html/Script
+// Run provided script at the start.
+if ("base64script" in arguments)
+{
+    const code = atob(arguments["base64script"]);
+    editor.session.setValue(code);
+    run();
+}

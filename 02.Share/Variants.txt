@@ -9,9 +9,12 @@ index.Editor
 index.Render
 index.Run
 index.CompositeRun
-index.UpdateBase64Code
-index.Base64Code
+index.UpdateBase64Script
+index.Base64Script
 
 render.Base
 render.Emscripten
 render.ogs-05
+
+# Backwards compatibility. Is replaced by `index.Base64Script`
+index.Base64Code
