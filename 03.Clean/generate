@@ -1,0 +1,6 @@
+DIR_STAGE=$1
+ln -sf ../ogs.js $DIR_STAGE
+ln -sf ../ogs.html.mem $DIR_STAGE
+ln -sf ../ace.js $DIR_STAGE
+ln -sf ../worker-lua.js $DIR_STAGE
+ln -sf ../mode-lua.js $DIR_STAGE

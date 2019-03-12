@@ -1,0 +1,19 @@
+symlink.ogs
+symlink.ace
+
+index.Base
+index.Arguments
+index.LeftRight
+index.Editor
+index.Render
+index.Run
+index.CompositeRun
+index.UpdateBase64Script
+index.Base64Script
+
+render.Base
+render.Emscripten
+render.ogs
+
+# Backwards compatibility. Was replaced by `index.Base64Script`
+index.Base64Code

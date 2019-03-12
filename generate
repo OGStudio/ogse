@@ -14,6 +14,7 @@ DIR=`dirname $0`
 STAGES="
 01.Editor
 02.Share
+03.Clean
 "
 
 # Directories with variants.
